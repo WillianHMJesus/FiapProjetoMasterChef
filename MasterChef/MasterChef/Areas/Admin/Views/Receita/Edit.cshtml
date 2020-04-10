@@ -1,0 +1,67 @@
+﻿@model MasterChef.Models.ReceitaModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Receita</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Edit", "Receita", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(r => r.Id)
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label">Nome</label>
+                @Html.TextBoxFor(r => r.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.Nome, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="TempoPreparo" class="control-label">Tempo de Preparo</label>
+                @Html.TextBoxFor(r => r.TempoPreparo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.TempoPreparo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="RendimentoPorcoes" class="control-label">Rendimento por Porção</label>
+                @Html.TextBoxFor(r => r.RendimentoPorcoes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.RendimentoPorcoes, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Ingredientes" class="control-label">Ingredientes</label>
+                @Html.TextBoxFor(r => r.Ingredientes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.Ingredientes, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="ModoPreparo" class="control-label">Modo de Preparo</label>
+                @Html.TextBoxFor(r => r.ModoPreparo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.ModoPreparo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Cobertura" class="control-label">Cobertura</label>
+                @Html.TextBoxFor(r => r.Cobertura, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.Cobertura, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="InfoAdicional" class="control-label">Informações Adicionais</label>
+                @Html.TextBoxFor(r => r.InfoAdicional, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.InfoAdicional, "", new { @class = "text-danger" })
+            </div>
+            @Html.HiddenFor(r => r.CaminhoImagem)
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Receita")
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

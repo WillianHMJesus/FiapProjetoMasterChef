@@ -1,0 +1,35 @@
+﻿@{
+    Model us
+//Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Login</h1>
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td><label asp-for="UserName"></label></td>
+                <td><input asp-for="UserName" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Password"></label></td>
+                <td><input asp-for="Password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Logar" />
+                </td>
+            </tr>
+        </table>
+        <div asp-validation-summary="All"></div>
+    }
+</body>
+</html>

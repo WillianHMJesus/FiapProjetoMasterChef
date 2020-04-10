@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MasterChef.Models.ReceitaModel>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Criar", "Create", "ReceitaAdmin")
+    
+    @*<a asp-action="Create">Create New</a>*@
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempoPreparo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RendimentoPorcoes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredientes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModoPreparo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cobertura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InfoAdicional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaminhoImagem)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TempoPreparo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RendimentoPorcoes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ingredientes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModoPreparo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cobertura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InfoAdicional)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaminhoImagem)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

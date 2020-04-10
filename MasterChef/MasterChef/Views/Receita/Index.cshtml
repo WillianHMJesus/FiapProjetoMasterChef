@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MasterChef.Models.ReceitaModel>
+
+@{
+    ViewData["Title"] = "Fiap - Projeto Master Chef";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Catálogo de Receitas</h2>
+
+        <a href="~/Areas/Admin/ReceitaAdmin/Create">Adicionar Receita</a>
+
+        <br /><div class="row">
+            @foreach (MasterChef.Models.ReceitaModel item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <a href=@Url.Action("Details","Receita",new { id = item.Id })>
+                            <h3>@item.Nome</h3>
+                        </a>
+                        <img src=@item.CaminhoImagem alt=@item.Nome style="width:100%">
+                        <p>
+                            @{ 
+                                var resumo = (item.ModoPreparo.Length >= 250) ? item.ModoPreparo.Substring(0, 250): item.ModoPreparo;
+                            }
+                            @resumo... <a href=@Url.Action("Details","Receita",new { id = item.Id })>ver mais</a> 
+                        </p>
+                        <p>Comentário(s): @item.QtdeComentarios</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

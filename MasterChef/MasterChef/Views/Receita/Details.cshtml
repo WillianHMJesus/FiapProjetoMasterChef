@@ -1,0 +1,82 @@
+﻿@model MasterChef.Models.ReceitaModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Model.Nome</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TempoPreparo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TempoPreparo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RendimentoPorcoes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RendimentoPorcoes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingredientes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ingredientes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModoPreparo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModoPreparo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cobertura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cobertura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InfoAdicional)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InfoAdicional)
+        </dd>
+    </dl>
+</div>
+
+<div>    
+   @Html.Partial("~/Views/Comentario/_Create.cshtml", new MasterChef.Models.ComentarioModel() {ReceitaId = Model.Id })
+</div>
+
+<h5>Comentários cadastrados:</h5>
+<div>
+    @foreach (var item in Model.Comentarios)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @item.Nome
+            </dt>
+            <dd>
+                @item.ComentarioTexto
+            </dd>
+        </dl>
+    }
+
+    <a asp-action="Index"><< Home</a>
+</div>

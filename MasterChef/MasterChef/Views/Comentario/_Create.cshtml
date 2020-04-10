@@ -1,0 +1,25 @@
+﻿@model MasterChef.Models.ComentarioModel
+@using (Html.BeginForm("Create", "Comentario", FormMethod.Post))
+{
+    <h5>Deixe seu comentário:</h5>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.HiddenFor(m => m.ReceitaId)
+            @Html.LabelFor(m => m.Nome)
+        </dt>
+        <dd>
+            @Html.TextBoxFor(m => m.Nome)
+        </dd>
+        <dt>
+            @Html.LabelFor(m => m.ComentarioTexto)
+        </dt>
+        <dd>
+            @Html.TextAreaFor(m => m.ComentarioTexto)
+        </dd>
+        <dt></dt>
+        <dd>
+            <input type="submit" name="Enviar" value="Enviar" />
+        </dd>
+    </dl>
+}

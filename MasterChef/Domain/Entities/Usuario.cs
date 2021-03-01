@@ -2,13 +2,26 @@
 
 namespace Domain.Entities
 {
-    public class Usuario:BaseEntity
+    public class Usuario : BaseEntity
     {
-        public string PrimeiroNome { get; set; }
-        public string SobreNome { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public DateTime? CreatedOn { get; set; }
-        public DateTime? UpdatedOn { get; set; }
+        protected Usuario()
+        {
+
+        }
+
+        public Usuario(string primeiroNome, string sobreNome, string userName, string password, DateTime criacao)
+        {
+            PrimeiroNome = primeiroNome;
+            SobreNome = sobreNome;
+            UserName = userName;
+            Password = password;
+            Criacao = criacao;
+        }
+
+        public string PrimeiroNome { get; private set; }
+        public string SobreNome { get; private set; }
+        public string UserName { get; private set; }
+        public string Password { get; private set; }
+        public DateTime Criacao { get; private set; }
     }
 }

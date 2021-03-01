@@ -4,13 +4,25 @@ namespace Domain.Entities
 {
     public class Categoria : BaseEntity
     {
-        private ICollection<ReceitaCategoria> _receitaCategorias;
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public virtual ICollection<ReceitaCategoria> ReceitasCategorias
+        protected Categoria()
         {
-            get { return _receitaCategorias ?? (_receitaCategorias = new List<ReceitaCategoria>()); }
-            protected set { _receitaCategorias = value; }
+
+        }
+
+        public Categoria(string nome, string descricao)
+        {
+            Nome = nome;
+            Descricao = descricao;
+            _receitas = new List<Receita>();
+        }
+
+        private ICollection<Receita> _receitas;
+
+        public string Nome { get; private set; }
+        public string Descricao { get; private set; }
+        public virtual ICollection<Receita> Receitas
+        {
+            get { return _receitas; }
         }
     }
 }

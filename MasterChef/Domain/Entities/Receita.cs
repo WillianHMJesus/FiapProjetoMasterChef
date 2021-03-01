@@ -1,31 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Domain.Entities
 {
     public class Receita : BaseEntity
     {
+        protected Receita()
+        {
+
+        }
+
+        public Receita(
+            string nome,
+            string tempoPreparo,
+            int redimentoPorcoes,
+            string ingredientes,
+            string modoPreparo,
+            string cobertura,
+            string informacaoAdicional,
+            string diretorioImagem)
+        {
+            Nome = nome;
+            TempoPreparo = tempoPreparo;
+            RendimentoPorcoes = redimentoPorcoes;
+            Ingredientes = ingredientes;
+            ModoPreparo = modoPreparo;
+            Cobertura = cobertura;
+            InformacaoAdicional = informacaoAdicional;
+            DiretorioImagem = diretorioImagem;
+            _comentarios = new List<Comentario>();
+            _categorias = new List<Categoria>();
+        }
+
         private ICollection<Comentario> _comentarios;
-        private ICollection<ReceitaCategoria> _receitaCategorias;
-        public string Nome { get; set; }
-        public string TempoPreparo { get; set; }
-        public int RendimentoPorcoes { get; set; }
-        public string Ingredientes { get; set; }
-        public string ModoPreparo { get; set; }
-        public string Cobertura { get; set; }
-        public string InfoAdicional { get; set; }
-        public string CaminhoImagem { get; set; }
-        public DateTime? CreatedOn { get; set; }
-        public DateTime? UpdatedOn { get; set; }
+        private ICollection<Categoria> _categorias;
+
+        public string Nome { get; private set; }
+        public string TempoPreparo { get; private set; }
+        public int RendimentoPorcoes { get; private set; }
+        public string Ingredientes { get; private set; }
+        public string ModoPreparo { get; private set; }
+        public string Cobertura { get; private set; }
+        public string InformacaoAdicional { get; private set; }
+        public string DiretorioImagem { get; private set; }
         public virtual ICollection<Comentario> Comentarios
         {
-            get { return _comentarios ?? (_comentarios = new List<Comentario>()); }
-            protected set { _comentarios = value; }
+            get { return _comentarios; }
         }
-        public virtual ICollection<ReceitaCategoria> ReceitasCategorias
+        public virtual ICollection<Categoria> ReceitasCategorias
         {
-            get { return _receitaCategorias ?? (_receitaCategorias = new List<ReceitaCategoria>()); }
-            protected set { _receitaCategorias = value; }
+            get { return _categorias; }
+        }
+
+        public void AdicionarComentario(Comentario comentario)
+        {
+            _comentarios.Add(comentario);
         }
     }
 }

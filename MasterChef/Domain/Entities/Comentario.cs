@@ -4,10 +4,21 @@ namespace Domain.Entities
 {
     public class Comentario : BaseEntity
     {
-        public string Nome { get; set; }
-        public string ComentarioTexto { get; set; }
-        public DateTime? CreatedOn { get; set; }
-        public int ReceitaId { get; set; }
-        public Receita Receita { get; set; }
+        protected Comentario()
+        {
+
+        }
+
+        public Comentario(string nome, string texto, DateTime criacao)
+        {
+            Nome = nome;
+            Texto = texto;
+            Criacao = criacao;
+        }
+
+        public string Nome { get; private set; }
+        public string Texto { get; private set; }
+        public DateTime Criacao { get; private set; }
+        public Receita Receita { get; private set; }
     }
 }

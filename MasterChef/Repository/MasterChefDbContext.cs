@@ -21,15 +21,7 @@ namespace Repository
             modelBuilder.ApplyConfiguration(new ReceitaCategoriaConfiguration());
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(@"Server=fiap11net.database.windows.net;Database=MasterChef;User Id=fiap11net;Password=Wrdkey251;Trusted_Connection=False;Encrypt=True;");
-        //    }
-        //}
-
-        public new DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity
+        public new DbSet<TEntity> Set<TEntity>() where TEntity : Entity
         {
             return base.Set<TEntity>();
         }
@@ -37,15 +29,6 @@ namespace Repository
         public new void SaveChanges()
         {
             base.SaveChanges();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=yourservername;Database=ContactDB;User Id=youruserid;Password=yourpassword;Trusted_Connection=True;");
-            }
         }
     }
 }

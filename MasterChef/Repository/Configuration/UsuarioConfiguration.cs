@@ -12,7 +12,7 @@ namespace Repository.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.PrimeiroNome).HasMaxLength(50).IsRequired().IsRequired();
             builder.Property(x => x.SobreNome).HasMaxLength(100).IsRequired().IsRequired();
-            builder.Property(x => x.Username).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.UserName).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Password).HasMaxLength(50).IsRequired().IsUnicode();
         }
     }

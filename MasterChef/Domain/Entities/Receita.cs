@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Receita : BaseEntity
+    public class Receita : Entity
     {
         protected Receita()
         {
@@ -28,11 +28,11 @@ namespace Domain.Entities
             InformacaoAdicional = informacaoAdicional;
             DiretorioImagem = diretorioImagem;
             _comentarios = new List<Comentario>();
-            _categorias = new List<Categoria>();
+            _receitaCategorias = new List<ReceitaCategoria>();
         }
 
         private ICollection<Comentario> _comentarios;
-        private ICollection<Categoria> _categorias;
+        private ICollection<ReceitaCategoria> _receitaCategorias;
 
         public string Nome { get; private set; }
         public string TempoPreparo { get; private set; }
@@ -46,9 +46,9 @@ namespace Domain.Entities
         {
             get { return _comentarios; }
         }
-        public virtual ICollection<Categoria> ReceitasCategorias
+        public virtual ICollection<ReceitaCategoria> ReceitasCategorias
         {
-            get { return _categorias; }
+            get { return _receitaCategorias; }
         }
 
         public void AdicionarComentario(Comentario comentario)

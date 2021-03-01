@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Comentario : BaseEntity
+    public class Comentario : Entity
     {
         protected Comentario()
         {

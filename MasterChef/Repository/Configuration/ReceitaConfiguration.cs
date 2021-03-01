@@ -16,9 +16,9 @@ namespace Repository.Configuration
             builder.Property(x => x.Ingredientes).HasMaxLength(1000).IsRequired().IsUnicode();
             builder.Property(x => x.ModoPreparo).HasMaxLength(1000).IsRequired().IsUnicode();
             builder.Property(x => x.Cobertura).HasMaxLength(1000).IsRequired().IsUnicode();
-            builder.Property(x => x.InfoAdicional).HasMaxLength(200).IsRequired().IsUnicode();
-            builder.Property(x => x.CaminhoImagem).HasMaxLength(200).IsRequired().IsUnicode();
-            builder.HasMany(c => c.Comentarios).WithOne(e => e.Receita).OnDelete(DeleteBehavior.Cascade).IsRequired();
+            builder.Property(x => x.InformacaoAdicional).HasMaxLength(200).IsRequired().IsUnicode();
+            builder.Property(x => x.DiretorioImagem).HasMaxLength(200).IsRequired().IsUnicode();
+            builder.HasMany(x => x.Comentarios).WithOne(x => x.Receita).OnDelete(DeleteBehavior.Cascade).IsRequired();
         }
     }
 }

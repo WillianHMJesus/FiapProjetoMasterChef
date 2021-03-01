@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Repository
 {
-    public class EfRepository<T> : IRepository<T> where T : BaseEntity
+    public class EfRepository<T> : IRepository<T> where T : Entity
     {
         private readonly IDbContext _context;
         private DbSet<T> _entities;

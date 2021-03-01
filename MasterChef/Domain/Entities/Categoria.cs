@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Categoria : BaseEntity
+    public class Categoria : Entity
     {
         protected Categoria()
         {
@@ -13,16 +13,16 @@ namespace Domain.Entities
         {
             Nome = nome;
             Descricao = descricao;
-            _receitas = new List<Receita>();
+            _receitasCategoria = new List<ReceitaCategoria>();
         }
 
-        private ICollection<Receita> _receitas;
+        private ICollection<ReceitaCategoria> _receitasCategoria;
 
         public string Nome { get; private set; }
         public string Descricao { get; private set; }
-        public virtual ICollection<Receita> Receitas
+        public virtual ICollection<ReceitaCategoria> ReceitasCategoria
         {
-            get { return _receitas; }
+            get { return _receitasCategoria; }
         }
     }
 }

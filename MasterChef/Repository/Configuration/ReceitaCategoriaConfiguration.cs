@@ -9,15 +9,9 @@ namespace Repository.Configuration
         public void Configure(EntityTypeBuilder<ReceitaCategoria> builder)
         {
             builder.ToTable("ReceitaCategoria");
-            builder.HasKey(x => x.Id);
-
-            builder.HasOne(bc => bc.Receita)
-                .WithMany(b => b.ReceitasCategorias)
-                .HasForeignKey(bc => bc.ReceitaId);
-
-            builder.HasOne(bc => bc.Categoria)
-                .WithMany(c => c.ReceitasCategorias)
-                .HasForeignKey(bc => bc.CategoriaId);
+            builder.HasKey(x => new { x.ReceitaId, x.CategoriaId });
+            builder.HasOne(x => x.Receita).WithMany(x => x.ReceitasCategorias).HasForeignKey(x => x.ReceitaId);
+            builder.HasOne(x => x.Categoria).WithMany(x => x.ReceitasCategoria).HasForeignKey(x => x.CategoriaId);
         }
     }
 }

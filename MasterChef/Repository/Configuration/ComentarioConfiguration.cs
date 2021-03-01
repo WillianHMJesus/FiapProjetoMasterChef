@@ -11,10 +11,9 @@ namespace Repository.Configuration
             builder.ToTable("Comentario");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Nome).HasMaxLength(50).IsRequired();
-            builder.Property(x => x.ComentarioTexto).HasMaxLength(200).IsRequired();
+            builder.Property(x => x.Texto).HasMaxLength(200).IsRequired();
 
-            builder.HasOne(r => r.Receita)
-                .WithMany(c => c.Comentarios);
+            builder.HasOne(x => x.Receita).WithMany(x => x.Comentarios);
         }
     }
 }

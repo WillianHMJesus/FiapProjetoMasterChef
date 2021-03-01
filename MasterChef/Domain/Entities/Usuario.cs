@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Usuario : BaseEntity
+    public class Usuario : Entity
     {
         protected Usuario()
         {

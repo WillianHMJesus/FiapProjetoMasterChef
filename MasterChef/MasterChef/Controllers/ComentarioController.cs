@@ -24,50 +24,20 @@ namespace MasterChef.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ComentarioModel comentarioModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {                    
-                    _service.AdicionarOuAtualizarComentario(
-                        new Comentario
-                        {
-                            Id = comentarioModel.Id,
-                            Nome = comentarioModel.Nome,
-                            ComentarioTexto = comentarioModel.ComentarioTexto,
-                            ReceitaId = comentarioModel.ReceitaId,
-                            CreatedOn = DateTime.Now
-                        });
+                var comentario = MapperViewModelToDomain(comentarioModel);
+                _service.Adicionar(comentario);
 
-                    return RedirectToAction("Details", "Receita", new { id = comentarioModel.ReceitaId });
-                }
-
-                return View(comentarioModel);
+                return RedirectToAction("Details", "Receita", new { id = comentarioModel.ReceitaId });
             }
-            catch(Exception ex)
-            {
-                return View();
-            }
-        }
 
-        private ComentarioModel MapperDomainToViewModel(Comentario comentario)
-        {
-            return _mapper.Map<Comentario, ComentarioModel>(comentario);
+            return View(comentarioModel);
         }
 
         private Comentario MapperViewModelToDomain(ComentarioModel comentarioModel)
         {
             return _mapper.Map<ComentarioModel, Comentario>(comentarioModel);
         }
-
-        private ReceitaModel MapperDomainToViewModelReceita(Receita receita)
-        {
-            return _mapper.Map<Receita, ReceitaModel>(receita);
-        }
-
-        private Receita MapperViewModelToDomainReceita(ReceitaModel receitaModel)
-        {
-            return _mapper.Map<ReceitaModel, Receita>(receitaModel);
-        }
-
     }
 }

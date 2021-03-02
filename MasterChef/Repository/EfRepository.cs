@@ -16,27 +16,7 @@ namespace Repository
             this._context = context;
         }
 
-        public void Delete(T entity)
-        {
-            if (entity == null)
-                throw new ArgumentNullException("entity");
-
-            this.Entities.Remove(entity);
-
-            this._context.SaveChanges();
-        }
-
-        public List<T> GetAll()
-        {
-            return this.Entities.ToList();
-        }
-
-        public T GetById(int id)
-        {
-            return this.Entities.Find(id);
-        }
-
-        public void Insert(T entity)
+        public void Adicionar(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
@@ -46,12 +26,32 @@ namespace Repository
             this._context.SaveChanges();
         }
 
-        public void Update(T entity)
+        public void Atualizar(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
             this._context.SaveChanges();
+        }
+
+        public void Deletar(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+
+            this.Entities.Remove(entity);
+
+            this._context.SaveChanges();
+        }
+
+        public T ObterPorId(int id)
+        {
+            return this.Entities.Find(id);
+        }
+
+        public List<T> ObterTodos()
+        {
+            return this.Entities.ToList();
         }
 
         private DbSet<T> Entities

@@ -24,12 +24,14 @@ namespace MasterChef.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var receitasModel = new List<ReceitaModel>();
-            var receitas = _service.GetTodosReceita();
+            var receitas = _service.ObterTodos();
+
             foreach (var receita in receitas)
             {
                 var receitaModel = MapperDomainToViewModel(receita);
                 receitasModel.Add(receitaModel);
             }
+
             return View("~/Areas/Admin/Views/Receita/Index.cshtml", receitasModel);
         }
 
@@ -45,20 +47,22 @@ namespace MasterChef.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var receita = MapperViewModelToDomain(receitaModel);
-                _service.AdicionarOuAtualizarReceita(receita);
+                _service.Adicionar(receita);
+
                 return RedirectToAction("Index");
             }
+
             return View("~/Areas/Admin/Views/Receita/Create.cshtml", receitaModel);
         }
 
         public IActionResult Edit(int id)
         {
-            var receita = _service.GetReceitaPorId(id);
-            if (receita == null)
-            {
-                throw new Exception("Receita não encontrada");
-            }
+            var receita = _service.ObterPorId(id);
+
+            if (receita == null) throw new Exception("Receita não encontrada");
+
             var receitaModel = MapperDomainToViewModel(receita);
+
             return View("~/Areas/Admin/Views/Receita/Edit.cshtml", receitaModel);
         }
 
@@ -67,40 +71,42 @@ namespace MasterChef.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var receita = _service.GetReceitaPorId(receitaModel.Id);
-                receita = ConverterModeloParaEdicao(ref receita, receitaModel);
-                _service.AdicionarOuAtualizarReceita(receita);
+                var receita = MapperViewModelToDomain(receitaModel);
+                _service.Atualizar(receita);
+
                 return RedirectToAction("Index");
             }
+
             return View("~/Areas/Admin/Views/Receita/Edit.cshtml", receitaModel);
         }
 
         public IActionResult Delete(int id)
         {
-            var receita = _service.GetReceitaPorId(id);
-            if (receita == null)
-            {
-                throw new Exception("Receita não encontrada");
-            }
+            var receita = _service.ObterPorId(id);
+
+            if (receita == null) throw new Exception("Receita não encontrada");
+
             var receitaModel = MapperDomainToViewModel(receita);
+
             return View("~/Areas/Admin/Views/Receita/Delete.cshtml", receitaModel);
         }
 
         [HttpPost]
         public IActionResult Delete(ReceitaModel receitaModel)
         {
-            _service.DeletarReceita(receitaModel.Id);
+            _service.Deletar(receitaModel.Id);
+
             return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)
         {
-            var receita = _service.GetReceitaPorId(id);
-            if (receita == null)
-            {
-                throw new Exception("Receita não encontrada");
-            }
+            var receita = _service.ObterPorId(id);
+
+            if (receita == null) throw new Exception("Receita não encontrada");
+
             var receitaModel = MapperDomainToViewModel(receita);
+
             return View("~/Areas/Admin/Views/Receita/Details.cshtml", receitaModel);
         }
 
@@ -112,19 +118,6 @@ namespace MasterChef.Areas.Admin.Controllers
         private Receita MapperViewModelToDomain(ReceitaModel receitaModel)
         {
             return _mapper.Map<ReceitaModel, Receita>(receitaModel);
-        }
-
-        private Receita ConverterModeloParaEdicao(ref Receita receita, ReceitaModel receitaModel)
-        {
-            receita.Nome = receitaModel.Nome;
-            receita.TempoPreparo = receitaModel.TempoPreparo;
-            receita.RendimentoPorcoes = receitaModel.RendimentoPorcoes;
-            receita.Ingredientes = receitaModel.Ingredientes;
-            receita.ModoPreparo = receitaModel.ModoPreparo;
-            receita.Cobertura = receitaModel.Cobertura;
-            receita.InfoAdicional = receitaModel.InfoAdicional;
-            receita.CaminhoImagem = receitaModel.CaminhoImagem;
-            return receita;
         }
     }
 }

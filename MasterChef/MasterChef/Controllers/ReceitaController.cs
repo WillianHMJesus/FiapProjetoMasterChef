@@ -25,32 +25,31 @@ namespace MasterChef.Controllers
         public IActionResult Index()
         {
             var receitasModel = new List<ReceitaModel>();
-            var receitas = _service.GetTodosReceita();
+            var receitas = _service.ObterTodos();
+
             foreach (var receita in receitas)
             {
                 var receitaModel = MapperDomainToViewModel(receita);
-                receitaModel.QtdeComentarios = _serviceComentario.GetTodosComentarios().Where(m => m.ReceitaId == receitaModel.Id).Count();
-                var comentarios = _serviceComentario.GetTodosComentarios().Where(p => p.ReceitaId == receita.Id).ToList();
+                var comentarios = _serviceComentario.ObterTodos().Where(x => x.Receita.Id == receita.Id).ToList();
 
-                List<Comentario> lComentario = new List<Comentario>();
-                lComentario.AddRange(comentarios);
-
-                receitaModel.Comentarios = RetornaComentarios(lComentario);
+                receitaModel.QtdeComentarios = comentarios.Count();
+                receitaModel.Comentarios = RetornaComentarios(comentarios);
                 receitasModel.Add(receitaModel);
             }
+
             return View(receitasModel);
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var receita = _service.GetReceitaPorId(id);
-            if (receita == null)
-            {
-                throw new ArgumentException("Receita não encontrada");
-            }
+            var receita = _service.ObterPorId(id);
+
+            if (receita == null) throw new ArgumentException("Receita não encontrada");
+
             var receitaModel = MapperDomainToViewModel(receita);
-            receitaModel.Comentarios = MapperDomainToViewModelComentarioList(_serviceComentario.GetTodosComentarios().Where(m => m.ReceitaId == receitaModel.Id));
+            receitaModel.Comentarios = RetornaComentarios(_serviceComentario.ObterTodos().Where(x => x.Receita.Id == receitaModel.Id).ToList());
+
             return View(receitaModel);
         }
 
@@ -59,40 +58,21 @@ namespace MasterChef.Controllers
             return _mapper.Map<Receita, ReceitaModel>(receita);
         }
 
-        private Receita MapperViewModelToDomain(ReceitaModel receitaModel)
-        {
-            return _mapper.Map<ReceitaModel, Receita>(receitaModel);
-        }
-
         private ComentarioModel MapperDomainToViewModelComentario(Comentario comentario)
         {
             return _mapper.Map<Comentario, ComentarioModel>(comentario);
         }
 
-        private IEnumerable<ComentarioModel> MapperDomainToViewModelComentarioList(IEnumerable<Comentario> comentario)
+        private List<ComentarioModel> RetornaComentarios(List<Comentario> comentarios)
         {
-            var lista = new List<ComentarioModel>();
-            foreach (var item in comentario)
-                lista.Add(MapperDomainToViewModelComentario(item));
+            var comentariosModel = new List<ComentarioModel>();
 
-            return lista.AsEnumerable();
-        }
-
-        private Comentario MapperViewModelToDomainComentario(ComentarioModel comentarioModel)
-        {
-            return _mapper.Map<ComentarioModel, Comentario>(comentarioModel);
-        }
-
-        private IEnumerable<ComentarioModel> RetornaComentarios(List<Comentario> lista)
-        {
-            foreach (var item in lista)
+            foreach (var comentario in comentarios)
             {
-                ComentarioModel model = new ComentarioModel();
-                model.ComentarioTexto = item.ComentarioTexto;
-                model.Nome = item.Nome;
-
-                yield return model;
+                comentariosModel.Add(MapperDomainToViewModelComentario(comentario));
             }
+
+            return comentariosModel;
         }
     }
 }

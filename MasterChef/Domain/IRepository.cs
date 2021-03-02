@@ -4,10 +4,10 @@ namespace Domain
 {
     public interface IRepository<T> where T : class
     {
-        T GetById(int id);
-        List<T> GetAll();
-        void Insert(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        void Adicionar(T entity);
+        void Atualizar(T entity);
+        void Deletar(T entity);
+        T ObterPorId(int id);
+        List<T> ObterTodos();
     }
 }

@@ -13,28 +13,30 @@ namespace Services
             _comentarioRepository = comentarioRepository;
         }
 
-        public void AdicionarOuAtualizarComentario(Comentario comentario)
+        public void Adicionar(Comentario comentario)
         {
-            if (comentario.Id == 0)
-                _comentarioRepository.Insert(comentario);
-            else
-                _comentarioRepository.Update(comentario);
+            _comentarioRepository.Adicionar(comentario);
         }
 
-        public void DeletarComentario(int comentarioId)
+        public void Atualizar(Comentario comentario)
         {
-            var comentario = _comentarioRepository.GetById(comentarioId);
-            _comentarioRepository.Delete(comentario);
+            _comentarioRepository.Atualizar(comentario);
         }
 
-        public Comentario GetComentarioPorId(int comentarioId)
+        public void Deletar(int comentarioId)
         {
-            return _comentarioRepository.GetById(comentarioId);
+            var comentario = _comentarioRepository.ObterPorId(comentarioId);
+            _comentarioRepository.Deletar(comentario);
         }
 
-        public IList<Comentario> GetTodosComentarios()
+        public Comentario ObterPorId(int comentarioId)
         {
-            return _comentarioRepository.GetAll();
+            return _comentarioRepository.ObterPorId(comentarioId);
+        }
+
+        public IList<Comentario> ObterTodos()
+        {
+            return _comentarioRepository.ObterTodos();
         }
     }
 }

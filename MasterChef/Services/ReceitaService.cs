@@ -8,69 +8,36 @@ namespace Services
     public class ReceitaService : IReceitaService
     {
         private IRepository<Receita> _receitaRepository;
-        private IRepository<ReceitaCategoria> _receitaCategoriaRepository;
-        private IRepository<Comentario> _comentarioRepository;
 
-        public ReceitaService(IRepository<Receita> receitaRepository,
-            IRepository<ReceitaCategoria> receitaCategoriaRepository,
-            IRepository<Comentario> comentarioRepository)
+        public ReceitaService(IRepository<Receita> receitaRepository)
         {
             _receitaRepository = receitaRepository;
-            _receitaCategoriaRepository = receitaCategoriaRepository;
-            _comentarioRepository = comentarioRepository;
         }
 
-        public void AdicionarOuAtualizarReceita(Receita receita)
+        public void Adicionar(Receita receita)
         {
-            if (receita.Id == 0)
-                _receitaRepository.Insert(receita);
-            else
-                _receitaRepository.Update(receita);
+            _receitaRepository.Adicionar(receita);
         }
 
-        public void AdicionarOuAtualizarReceitaCategoria(ReceitaCategoria receitaCategoria)
+        public void Atualizar(Receita receita)
         {
-            if (receitaCategoria.Id == 0)
-                _receitaCategoriaRepository.Insert(receitaCategoria);
-            else
-                _receitaCategoriaRepository.Update(receitaCategoria);
+            _receitaRepository.Atualizar(receita);
         }
 
-        public void DeletarReceita(int receitaId)
+        public void Deletar(int receitaId)
         {
-            var receita = _receitaRepository.GetById(receitaId);
-            _receitaRepository.Delete(receita);
+            var receita = _receitaRepository.ObterPorId(receitaId);
+            _receitaRepository.Deletar(receita);
         }
 
-        public void DeletarReceitaCategoria(int receitaCategoriaId)
+        public Receita ObterPorId(int receitaId)
         {
-            var receitaCategoria = _receitaCategoriaRepository.GetById(receitaCategoriaId);
-            _receitaCategoriaRepository.Delete(receitaCategoria);
+            return _receitaRepository.ObterPorId(receitaId);
         }
 
-        public IList<ReceitaCategoria> GetReceitaCategoriasPorCategoriaId(int categoriaId)
+        public IList<Receita> ObterTodos()
         {
-            return _receitaCategoriaRepository.GetAll().Where(x => x.CategoriaId == categoriaId).ToList();
-        }
-
-        public IList<ReceitaCategoria> GetReceitaCategoriasPorReceitaId(int receitaId)
-        {
-            return _receitaCategoriaRepository.GetAll().Where(x => x.ReceitaId == receitaId).ToList();
-        }
-
-        public IList<Comentario> GetReceitaComentariosPorReceitaId(int receitaId)
-        {
-            return _comentarioRepository.GetAll().Where(x => x.Receita.Id == receitaId).ToList();
-        }
-
-        public Receita GetReceitaPorId(int receitaId)
-        {
-            return _receitaRepository.GetById(receitaId);
-        }
-
-        public IList<Receita> GetTodosReceita()
-        {
-            return _receitaRepository.GetAll();
+            return _receitaRepository.ObterTodos();
         }
     }
 }

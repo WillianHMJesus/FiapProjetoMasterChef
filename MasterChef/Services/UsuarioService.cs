@@ -13,28 +13,30 @@ namespace Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public void AdicionarOuAtualizarUsuario(Usuario usuario)
+        public void Adicionar(Usuario usuario)
         {
-            if (usuario.Id == 0)
-                _usuarioRepository.Insert(usuario);
-            else
-                _usuarioRepository.Update(usuario);
+            _usuarioRepository.Adicionar(usuario);
         }
 
-        public void DeletarUsuario(int usuarioId)
+        public void Atualizar(Usuario usuario)
         {
-            var usuario = _usuarioRepository.GetById(usuarioId);
-            _usuarioRepository.Delete(usuario);
+            _usuarioRepository.Atualizar(usuario);
         }
 
-        public IList<Usuario> GetTodosUsuarios()
+        public void Deletar(int usuarioId)
         {
-            return _usuarioRepository.GetAll();
+            var usuario = _usuarioRepository.ObterPorId(usuarioId);
+            _usuarioRepository.Deletar(usuario);
         }
 
-        public Usuario GetUsuarioPorId(int usuarioId)
+        public Usuario ObterPorId(int usuarioId)
         {
-            return _usuarioRepository.GetById(usuarioId);
+            return _usuarioRepository.ObterPorId(usuarioId);
+        }
+
+        public IList<Usuario> ObterTodos()
+        {
+            return _usuarioRepository.ObterTodos();
         }
     }
 }

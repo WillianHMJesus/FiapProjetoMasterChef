@@ -5,9 +5,10 @@ namespace Services
 {
     public interface IComentarioService
     {
-        void AdicionarOuAtualizarComentario(Comentario comentario);
-        void DeletarComentario(int comentarioId);
-        Comentario GetComentarioPorId(int comentarioId);
-        IList<Comentario> GetTodosComentarios();
+        void Adicionar(Comentario comentario);
+        void Atualizar(Comentario comentario);
+        void Deletar(int comentarioId);
+        Comentario ObterPorId(int comentarioId);
+        IList<Comentario> ObterTodos();
     }
 }

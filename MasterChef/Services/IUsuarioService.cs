@@ -5,9 +5,10 @@ namespace Services
 {
     public interface IUsuarioService
     {
-        void AdicionarOuAtualizarUsuario(Usuario usuario);
-        void DeletarUsuario(int usuarioId);
-        Usuario GetUsuarioPorId(int usuarioId);
-        IList<Usuario> GetTodosUsuarios();
+        void Adicionar(Usuario usuario);
+        void Atualizar(Usuario usuario);
+        void Deletar(int usuarioId);
+        Usuario ObterPorId(int usuarioId);
+        IList<Usuario> ObterTodos();
     }
 }

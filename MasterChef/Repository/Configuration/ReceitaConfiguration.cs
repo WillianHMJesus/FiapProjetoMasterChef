@@ -18,6 +18,7 @@ namespace Repository.Configuration
             builder.Property(x => x.Cobertura).HasMaxLength(1000).IsRequired().IsUnicode();
             builder.Property(x => x.InformacaoAdicional).HasMaxLength(200).IsRequired().IsUnicode();
             builder.Property(x => x.DiretorioImagem).HasMaxLength(200).IsRequired().IsUnicode();
+
             builder.HasMany(x => x.Comentarios).WithOne(x => x.Receita).OnDelete(DeleteBehavior.Cascade).IsRequired();
         }
     }

@@ -5,19 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\**" />
     <Compile Remove="Data\**" />
-    <Content Remove="Areas\**" />
     <Content Remove="Data\**" />
-    <EmbeddedResource Remove="Areas\**" />
     <EmbeddedResource Remove="Data\**" />
-    <None Remove="Areas\**" />
     <None Remove="Data\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Areas\Admin\Controllers\ComentarioController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ReceitaAdminController.cs" />
+    <Content Remove="Views\Receita\Create.cshtml" />
+    <Content Remove="Views\Receita\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,8 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\css\" />
@@ -41,25 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Categoria\Create.cshtml" />
-    <None Include="Areas\Admin\Views\Categoria\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\Categoria\Details.cshtml" />
-    <None Include="Areas\Admin\Views\Categoria\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\Categoria\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Comentario\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\Comentario\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Receita\Create.cshtml" />
-    <None Include="Areas\Admin\Views\Receita\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\Receita\Details.cshtml" />
-    <None Include="Areas\Admin\Views\Receita\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\Receita\Index.cshtml" />
-    <None Include="Areas\Admin\Views\Usuario\Create.cshtml" />
-    <None Include="Areas\Admin\Views\Usuario\Delete.cshtml" />
-    <None Include="Areas\Admin\Views\Usuario\Details.cshtml" />
-    <None Include="Areas\Admin\Views\Usuario\Edit.cshtml" />
-    <None Include="Areas\Admin\Views\Usuario\Index.cshtml" />
-    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Views\Comentario\Delete.cshtml" />
+    <None Include="Views\Comentario\Index.cshtml" />
+    <None Include="Views\Receita\Delete.cshtml" />
+    <None Include="Views\Receita\Edit.cshtml" />
+    <None Include="Views\Receita\Create.cshtml" />
+    <None Include="Views\Receita\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

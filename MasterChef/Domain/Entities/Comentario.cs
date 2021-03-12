@@ -9,11 +9,11 @@ namespace Domain.Entities
 
         }
 
-        public Comentario(string nome, string texto, DateTime criacao)
+        public Comentario(string nome, string texto)
         {
             Nome = nome;
             Texto = texto;
-            Criacao = criacao;
+            Criacao = DateTime.Now;
         }
 
         public string Nome { get; private set; }

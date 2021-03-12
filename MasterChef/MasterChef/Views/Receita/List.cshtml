@@ -4,8 +4,8 @@
 }
 <h2>Index</h2>
 <p>
-    @Html.ActionLink("Criar", "Create", "ReceitaAdmin")
-    
+    @Html.ActionLink("Criar", "Create", "Receita")
+
     @*<a asp-action="Create">Create New</a>*@
 </p>
 <table class="table">
@@ -30,10 +30,7 @@
                 @Html.DisplayNameFor(model => model.Cobertura)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InfoAdicional)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CaminhoImagem)
+                @Html.DisplayNameFor(model => model.InformacaoAdicional)
             </th>
             <th></th>
         </tr>
@@ -61,10 +58,7 @@
                     @Html.DisplayFor(modelItem => item.Cobertura)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.InfoAdicional)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CaminhoImagem)
+                    @Html.DisplayFor(modelItem => item.InformacaoAdicional)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

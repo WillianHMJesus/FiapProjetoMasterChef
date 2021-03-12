@@ -16,7 +16,7 @@
     <div class="container">
         <h2>Catálogo de Receitas</h2>
 
-        <a href="~/Areas/Admin/ReceitaAdmin/Create">Adicionar Receita</a>
+        <a href=@Url.Action("Create", "Receita")>Adicionar Receita</a>
 
         <br /><div class="row">
             @foreach (MasterChef.Models.ReceitaModel item in Model)
@@ -26,7 +26,7 @@
                         <a href=@Url.Action("Details","Receita",new { id = item.Id })>
                             <h3>@item.Nome</h3>
                         </a>
-                        <img src=@item.CaminhoImagem alt=@item.Nome style="width:100%">
+                        @*<img src=@item.DiretorioImagem alt=@item.Nome style="width:100%">*@
                         <p>
                             @{ 
                                 var resumo = (item.ModoPreparo.Length >= 250) ? item.ModoPreparo.Substring(0, 250): item.ModoPreparo;

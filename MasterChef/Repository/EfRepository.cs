@@ -13,7 +13,7 @@ namespace Repository
 
         public EfRepository(IDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public void Adicionar(T entity)
@@ -21,9 +21,9 @@ namespace Repository
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            this.Entities.Add(entity);
+            Entities.Add(entity);
 
-            this._context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void Atualizar(T entity)
@@ -31,7 +31,8 @@ namespace Repository
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            this._context.SaveChanges();
+            Entities.Update(entity);
+            _context.SaveChanges();
         }
 
         public void Deletar(T entity)
@@ -39,19 +40,19 @@ namespace Repository
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            this.Entities.Remove(entity);
+            Entities.Remove(entity);
 
-            this._context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public T ObterPorId(int id)
         {
-            return this.Entities.Find(id);
+            return Entities.Find(id);
         }
 
         public List<T> ObterTodos()
         {
-            return this.Entities.ToList();
+            return Entities.ToList();
         }
 
         private DbSet<T> Entities

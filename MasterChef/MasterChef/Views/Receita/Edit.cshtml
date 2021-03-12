@@ -46,11 +46,11 @@
                 @Html.ValidationMessageFor(r => r.Cobertura, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="InfoAdicional" class="control-label">Informações Adicionais</label>
-                @Html.TextBoxFor(r => r.InfoAdicional, new { @class = "form-control" })
-                @Html.ValidationMessageFor(r => r.InfoAdicional, "", new { @class = "text-danger" })
+                <label asp-for="InformacaoAdicional" class="control-label">Informações Adicionais</label>
+                @Html.TextBoxFor(r => r.InformacaoAdicional, new { @class = "form-control" })
+                @Html.ValidationMessageFor(r => r.InformacaoAdicional, "", new { @class = "text-danger" })
             </div>
-            @Html.HiddenFor(r => r.CaminhoImagem)
+            @Html.HiddenFor(r => r.DiretorioImagem)
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

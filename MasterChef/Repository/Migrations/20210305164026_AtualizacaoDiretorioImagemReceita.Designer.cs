@@ -11,9 +11,10 @@ using System;
 namespace Repository.Migrations
 {
     [DbContext(typeof(MasterChefDbContext))]
-    partial class MasterChefDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210305164026_AtualizacaoDiretorioImagemReceita")]
+    partial class AtualizacaoDiretorioImagemReceita
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,6 +70,7 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Cobertura")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .IsUnicode(true);
 
@@ -77,6 +79,7 @@ namespace Repository.Migrations
                         .IsUnicode(true);
 
                     b.Property<string>("InformacaoAdicional")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .IsUnicode(true);
 
